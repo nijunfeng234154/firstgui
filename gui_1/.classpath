@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="C:/Users/11629/.p2/pool/plugins/com.ibm.icu_72.1.0.jar" sourcepath="C:/Users/11629/.p2/pool/plugins/com.ibm.icu_72.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/11629/.p2/pool/plugins/org.eclipse.ui.forms_3.11.600.v20230220-0932.jar" sourcepath="C:/Users/11629/.p2/pool/plugins/org.eclipse.ui.forms_3.11.600.v20230220-0932.jar"/>
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

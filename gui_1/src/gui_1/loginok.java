@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 
 public class loginok extends JDialog {
     //construct method 构造方法初始化弹窗样式
-    loginok(){
+    public loginok(){
         this.setTitle("");
         this.setVisible(true);
         this.setLocation(200,200);
@@ -46,31 +46,32 @@ public class loginok extends JDialog {
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(59)
-        					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        					.addGap(156)
+        					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(69)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
         						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
         						.addGroup(groupLayout.createSequentialGroup()
+        							.addGap(11)
         							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-        							.addGap(56)
+        							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))))
         				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(126)
-        					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(145)
-        					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)))
-        			.addContainerGap(81, Short.MAX_VALUE))
+        					.addGap(132)
+        					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(71, Short.MAX_VALUE))
         );
         groupLayout.setVerticalGroup(
         	groupLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(groupLayout.createSequentialGroup()
-        			.addGap(61)
+        			.addGap(63)
         			.addComponent(lblNewLabel)
-        			.addGap(31)
-        			.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
         			.addGap(28)
+        			.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+        			.addGap(31)
         			.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-        			.addGap(47)
+        			.addGap(45)
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(btnNewButton)
         				.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

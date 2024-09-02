@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import java.awt.Button;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -28,8 +30,13 @@ import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.JToolBar;
+import javax.swing.JCheckBox;
 
 public class MainWindow extends JFrame{
+	private JTable table;
 	private JTextField stdid1;
 	private JTextField name1;
 	private JTextField sex1;
@@ -53,6 +60,11 @@ public class MainWindow extends JFrame{
 	private JTextField mHRtext;
 	private JTextField sHRtext;
 	private JTextField totalscoretext;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 		public static void main(String[] args) {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
@@ -79,6 +91,12 @@ public class MainWindow extends JFrame{
 			employeechange.addTab("添加信息", null, employeeinf_2, null);
 			
 			JButton btnNewButton = new JButton("确认添加");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					resettoSendpost(e);
+					cleartext(e);
+				}
+			});
 			
 			JButton btnNewButton_1 = new JButton("取消");
 			
@@ -461,105 +479,147 @@ public class MainWindow extends JFrame{
 			
 			stdid4 = new JTextField();
 			stdid4.setColumns(10);
+			
+			JCheckBox stdidcond = new JCheckBox("条件");
+			stdidcond.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			
+			JCheckBox namecond = new JCheckBox("条件");
+			namecond.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			
+			JCheckBox sexcond = new JCheckBox("条件");
+			sexcond.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			
+			JCheckBox telcond = new JCheckBox("条件");
+			telcond.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			
+			JCheckBox mailcond = new JCheckBox("条件");
+			mailcond.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			
+			JLabel lblNewLabel_2 = new JLabel("请勾选查找的条件,其余未勾选的信息会被更新");
+			lblNewLabel_2.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 			GroupLayout gl_employeeinf_2_3 = new GroupLayout(employeeinf_2_3);
 			gl_employeeinf_2_3.setHorizontalGroup(
 				gl_employeeinf_2_3.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_employeeinf_2_3.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(btnNewButton_2_4))
-					.addGroup(gl_employeeinf_2_3.createSequentialGroup()
-						.addGap(79)
-						.addComponent(btnNewButton_6, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-						.addGap(18)
-						.addComponent(btnNewButton_1_4, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_employeeinf_2_3.createSequentialGroup()
-						.addGap(93)
 						.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.LEADING)
 							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
-								.addComponent(lblNewLabel_8_1_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-								.addGap(27)
-								.addComponent(stdid4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
+								.addContainerGap()
+								.addComponent(btnNewButton_2_4))
 							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
-								.addComponent(lblNewLabel_8_2, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-								.addGap(27)
-								.addComponent(name4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
+								.addGap(93)
+								.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_employeeinf_2_3.createSequentialGroup()
+										.addComponent(lblNewLabel_8_1_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+										.addGap(27)
+										.addComponent(stdid4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(stdidcond, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
+									.addGroup(gl_employeeinf_2_3.createSequentialGroup()
+										.addComponent(lblNewLabel_8_2, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+										.addGap(27)
+										.addComponent(name4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(namecond, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
+									.addGroup(gl_employeeinf_2_3.createSequentialGroup()
+										.addComponent(lblNewLabel_4_3_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+										.addGap(27)
+										.addComponent(sex4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(sexcond, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
+									.addGroup(gl_employeeinf_2_3.createSequentialGroup()
+										.addComponent(lblNewLabel_5_4_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+										.addGap(27)
+										.addComponent(tel4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(telcond, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
+									.addGroup(gl_employeeinf_2_3.createSequentialGroup()
+										.addComponent(lblNewLabel_5_1_3_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+										.addGap(27)
+										.addComponent(mail4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(mailcond, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))))
 							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
-								.addComponent(lblNewLabel_4_3_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-								.addGap(27)
-								.addComponent(sex4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
-							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
-								.addComponent(lblNewLabel_5_4_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-								.addGap(27)
-								.addComponent(tel4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
-							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
-								.addComponent(lblNewLabel_5_1_3_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-								.addGap(27)
-								.addComponent(mail4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))))
+								.addGap(79)
+								.addComponent(btnNewButton_6, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+								.addGap(18)
+								.addComponent(btnNewButton_1_4, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(17, Short.MAX_VALUE))
+					.addGroup(Alignment.TRAILING, gl_employeeinf_2_3.createSequentialGroup()
+						.addContainerGap(45, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
+						.addGap(39))
 			);
 			gl_employeeinf_2_3.setVerticalGroup(
 				gl_employeeinf_2_3.createParallelGroup(Alignment.TRAILING)
 					.addGroup(gl_employeeinf_2_3.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(btnNewButton_2_4, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addGap(35)
-						.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.LEADING)
-							.addComponent(lblNewLabel_8_1_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.TRAILING)
 							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
-								.addGap(3)
-								.addComponent(stdid4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(btnNewButton_2_4, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+								.addGap(35)
+								.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblNewLabel_8_1_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+									.addGroup(gl_employeeinf_2_3.createSequentialGroup()
+										.addGap(3)
+										.addComponent(stdid4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+							.addComponent(stdidcond))
 						.addGap(18)
 						.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.LEADING)
 							.addComponent(lblNewLabel_8_2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
 								.addGap(3)
-								.addComponent(name4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.BASELINE)
+									.addComponent(name4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(namecond))))
 						.addGap(18)
 						.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.LEADING)
 							.addComponent(lblNewLabel_4_3_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
 								.addGap(3)
-								.addComponent(sex4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.BASELINE)
+									.addComponent(sex4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(sexcond))))
 						.addGap(22)
 						.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.LEADING)
 							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
 								.addGap(1)
 								.addComponent(lblNewLabel_5_4_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-							.addComponent(tel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.BASELINE)
+								.addComponent(tel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(telcond)))
 						.addGap(24)
 						.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.LEADING)
 							.addGroup(gl_employeeinf_2_3.createSequentialGroup()
 								.addGap(1)
 								.addComponent(lblNewLabel_5_1_3_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-							.addComponent(mail4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.BASELINE)
+								.addComponent(mail4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(mailcond)))
 						.addGap(40)
 						.addGroup(gl_employeeinf_2_3.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnNewButton_6, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnNewButton_1_4, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
-						.addGap(105))
+							.addComponent(btnNewButton_1_4, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnNewButton_6, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+						.addGap(32))
 			);
 			employeeinf_2_3.setLayout(gl_employeeinf_2_3);
 			employeeinf.setLayout(gl_employeeinf);
-			
-			JPanel numbercall = new JPanel();
-			tabbedPane.addTab("叫号面板", null, numbercall, null);
-			
-			JLabel lblNewLabel_2 = new JLabel("numbercall");
-			GroupLayout gl_numbercall = new GroupLayout(numbercall);
-			gl_numbercall.setHorizontalGroup(
-				gl_numbercall.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_numbercall.createSequentialGroup()
-						.addGap(142)
-						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(504, Short.MAX_VALUE))
-			);
-			gl_numbercall.setVerticalGroup(
-				gl_numbercall.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_numbercall.createSequentialGroup()
-						.addGap(138)
-						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(309, Short.MAX_VALUE))
-			);
-			numbercall.setLayout(gl_numbercall);
 			
 			JPanel scoreinf = new JPanel();
 			tabbedPane.addTab("打分面板", null, scoreinf, null);
@@ -703,21 +763,148 @@ public class MainWindow extends JFrame{
 			JPanel HRinf = new JPanel();
 			tabbedPane.addTab("HR信息", null, HRinf, null);
 			
-			JLabel lblNewLabel_3 = new JLabel("HR");
+			JPanel scoreinf_1 = new JPanel();
+			
+			JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("更改记录");
+			rdbtnNewRadioButton_4.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+			
+			JRadioButton rdbtnNewRadioButton_3_1 = new JRadioButton("查询记录");
+			rdbtnNewRadioButton_3_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+			
+			JButton btnNewButton_3_1 = new JButton("确认");
+			
+			JButton btnNewButton_7_1 = new JButton("取消");
+			
+			JLabel lblNewLabel_1_1_2_1 = new JLabel("面试组别");
+			lblNewLabel_1_1_2_1.setFont(new Font("微软雅黑", Font.PLAIN, 17));
+			
+			textField = new JTextField();
+			textField.setColumns(10);
+			
+			JRadioButton rdbtnNewRadioButton_2_1 = new JRadioButton("添加记录");
+			rdbtnNewRadioButton_2_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+			
+			JRadioButton rdbtnNewRadioButton_1_1 = new JRadioButton("删除记录");
+			rdbtnNewRadioButton_1_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+			
+			JLabel lblNewLabel_1_1_3 = new JLabel("权限");
+			lblNewLabel_1_1_3.setFont(new Font("微软雅黑", Font.PLAIN, 17));
+			
+			textField_1 = new JTextField();
+			textField_1.setColumns(10);
+			
+			JLabel lblNewLabel_1_2 = new JLabel("ID");
+			lblNewLabel_1_2.setFont(new Font("微软雅黑", Font.PLAIN, 17));
+			
+			textField_2 = new JTextField();
+			textField_2.setColumns(10);
+			
+			JLabel lblNewLabel_1_1_1_1_1 = new JLabel("电话");
+			lblNewLabel_1_1_1_1_1.setFont(new Font("微软雅黑", Font.PLAIN, 17));
+			
+			textField_3 = new JTextField();
+			textField_3.setColumns(10);
+			
+			JLabel lblNewLabel_1_1_1_2 = new JLabel("工作时间");
+			lblNewLabel_1_1_1_2.setFont(new Font("微软雅黑", Font.PLAIN, 17));
+			
+			textField_4 = new JTextField();
+			textField_4.setColumns(10);
+			GroupLayout gl_scoreinf_1 = new GroupLayout(scoreinf_1);
+			gl_scoreinf_1.setHorizontalGroup(
+				gl_scoreinf_1.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_scoreinf_1.createSequentialGroup()
+						.addGap(97)
+						.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_scoreinf_1.createSequentialGroup()
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblNewLabel_1_1_1_2)
+									.addComponent(lblNewLabel_1_1_2_1)
+									.addComponent(lblNewLabel_1_1_3, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblNewLabel_1_1_1_1_1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+								.addGap(18)
+								.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.LEADING)
+									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(gl_scoreinf_1.createSequentialGroup()
+								.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_scoreinf_1.createSequentialGroup()
+										.addComponent(btnNewButton_3_1, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+										.addGap(25))
+									.addGroup(gl_scoreinf_1.createSequentialGroup()
+										.addGap(10)
+										.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.LEADING)
+											.addComponent(rdbtnNewRadioButton_2_1, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+											.addComponent(rdbtnNewRadioButton_4, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_scoreinf_1.createSequentialGroup()
+										.addGap(32)
+										.addComponent(btnNewButton_7_1, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+									.addGroup(gl_scoreinf_1.createSequentialGroup()
+										.addGap(46)
+										.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.TRAILING)
+											.addComponent(rdbtnNewRadioButton_3_1, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+											.addComponent(rdbtnNewRadioButton_1_1, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))))))
+						.addGap(95))
+			);
+			gl_scoreinf_1.setVerticalGroup(
+				gl_scoreinf_1.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_scoreinf_1.createSequentialGroup()
+						.addGap(43)
+						.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblNewLabel_1_1_3, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblNewLabel_1_1_1_2)
+							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblNewLabel_1_1_1_1_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+						.addGap(22)
+						.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.LEADING)
+							.addComponent(lblNewLabel_1_1_2_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_scoreinf_1.createSequentialGroup()
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGap(64)
+						.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(rdbtnNewRadioButton_1_1)
+							.addComponent(rdbtnNewRadioButton_2_1))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(rdbtnNewRadioButton_3_1)
+							.addComponent(rdbtnNewRadioButton_4))
+						.addGap(34)
+						.addGroup(gl_scoreinf_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnNewButton_3_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnNewButton_7_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+						.addGap(59))
+			);
+			scoreinf_1.setLayout(gl_scoreinf_1);
 			GroupLayout gl_HRinf = new GroupLayout(HRinf);
 			gl_HRinf.setHorizontalGroup(
 				gl_HRinf.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_HRinf.createSequentialGroup()
-						.addGap(190)
-						.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(501, Short.MAX_VALUE))
+						.addComponent(scoreinf_1, GroupLayout.PREFERRED_SIZE, 506, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(72, Short.MAX_VALUE))
 			);
 			gl_HRinf.setVerticalGroup(
 				gl_HRinf.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_HRinf.createSequentialGroup()
-						.addGap(85)
-						.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(371, Short.MAX_VALUE))
+						.addComponent(scoreinf_1, GroupLayout.PREFERRED_SIZE, 507, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 			);
 			HRinf.setLayout(gl_HRinf);
 			GroupLayout groupLayout = new GroupLayout(getContentPane());
@@ -731,11 +918,100 @@ public class MainWindow extends JFrame{
 				groupLayout.createParallelGroup(Alignment.LEADING)
 					.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
 			);
+			
+			JPanel numbercall = new JPanel();
+			tabbedPane.addTab("叫号面板", null, numbercall, null);
+			
+			JButton btnNewButton_8 = new JButton("New button");
+			GroupLayout gl_numbercall = new GroupLayout(numbercall);
+			gl_numbercall.setHorizontalGroup(
+				gl_numbercall.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_numbercall.createSequentialGroup()
+						.addGap(81)
+						.addComponent(btnNewButton_8, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(318, Short.MAX_VALUE))
+			);
+			gl_numbercall.setVerticalGroup(
+				gl_numbercall.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_numbercall.createSequentialGroup()
+						.addGap(27)
+						.addComponent(btnNewButton_8)
+						.addContainerGap(423, Short.MAX_VALUE))
+			);
+			numbercall.setLayout(gl_numbercall);
+			
+			JPanel form = new JPanel();
+			tabbedPane.addTab("表单", null, form, null);
+			
+			JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+			
+			JScrollPane scrollPane_1 = new JScrollPane();
+			tabbedPane_1.addTab("HR信息表", null, scrollPane_1, null);
+			
+			JButton btnNewButton_3_1_1 = new JButton("刷新");
+			btnNewButton_3_1_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					reload(e);
+				}
+			});
+			GroupLayout gl_form = new GroupLayout(form);
+			gl_form.setHorizontalGroup(
+				gl_form.createParallelGroup(Alignment.LEADING)
+					.addComponent(tabbedPane_1, GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+					.addGroup(gl_form.createSequentialGroup()
+						.addGap(195)
+						.addComponent(btnNewButton_3_1_1, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(199, Short.MAX_VALUE))
+			);
+			gl_form.setVerticalGroup(
+				gl_form.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_form.createSequentialGroup()
+						.addComponent(tabbedPane_1, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnNewButton_3_1_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(39, Short.MAX_VALUE))
+			);
+			
+			JScrollPane scrollPane = new JScrollPane();
+			tabbedPane_1.addTab("New tab", null, scrollPane, null);
+			table = new JTable(model);
+			scrollPane.setViewportView(table);
+			
+			JScrollPane scrollPane_2 = new JScrollPane();
+			tabbedPane_1.addTab("New tab", null, scrollPane_2, null);
+			Object[] columns = {"学号", "姓名", "性别", "电话", "邮箱"};// 字段
+	        Object[][] data = null;// 需要展示的数据，一般是二维数组
+	        DefaultTableModel model = new DefaultTableModel(data, columns);
+			form.setLayout(gl_form);
 			getContentPane().setLayout(groupLayout);
-			this.setBounds(100,100,525,500);
+
+	       
+			this.setBounds(100,100,514,548);
 			this.setLocationRelativeTo(null);
 		}
+		protected void reload(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		protected void cleartext(ActionEvent e) {
+			// TODO Auto-generated method stub
+			name1.setText("");
+			sex1.setText("");
+			mail1.setText("");
+			tel1.setText("");
+			stdid1.setText("");
+		}
+		protected void resettoSendpost(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String name = this.name1.getText();
+			String sex = this.sex1.getText();
+			String tel = this.tel1.getText();
+			String stdid = this.stdid1.getText();
+			String mail = this.mail1.getText();
+			
+		}
 		protected void resettoWelcomCover(ActionEvent e) {
+		
 			// TODO Auto-generated method stub
 			this.setVisible(false);
 			new WelcomCover().setVisible(true);
